@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, render_template
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
@@ -46,7 +46,19 @@ def create_app():
     # markdown
     Markdown(app, extensions=['nl2br','fenced_code'])
 
+    # 오류페이지
+    app.register_error_handler(404, page_not_found)
+    app.register_error_handler(500, server_error)
+
     return app
+
+
+def page_not_found(e):
+    return render_template('error/404.html'), 404
+
+def server_error(e):
+    return render_template('error/500.html'), 500
+
 
 # app = Flask(__name__)
 # app.debug = True

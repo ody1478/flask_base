@@ -1,4 +1,5 @@
-from flask import Blueprint, g, url_for
+from locale import currency
+from flask import Blueprint, g, url_for, current_app
 from werkzeug.utils import redirect
 # from app.models import Question, Answer
 
@@ -20,6 +21,7 @@ def hello():
 @bp.route('/')
 def index():
     # return 'Main Index'
+    current_app.logger.info('LOGGER TEST -> INFO 레벱로 출력')
     return redirect(url_for('question._list'))
 
 @bp.route('/gg/')

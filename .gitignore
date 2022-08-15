@@ -163,3 +163,4 @@ pybo.db
 migrations
 .vscode
 dev.env
+logs
